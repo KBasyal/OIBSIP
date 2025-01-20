@@ -1,11 +1,14 @@
-const express = require("express");
-const path = require("path");
-const app = express();
+const express = require('express')
 
-app.get('/health', (req, res, next)=>{
-    res.json({
-        result: "hello there",
-        message: "success ok",
-        meta: null
-    });
-});
+const app = express()
+
+app.use('/',(request, response)=>{
+    // response.send("Hello guys are you still there?")
+    response.json({
+        result:"any",
+        message :"Success",
+        meta:null
+    })
+})
+
+module.exports = app;
