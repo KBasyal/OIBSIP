@@ -12,6 +12,7 @@ const bodyValidator = (schema, fileUploadField =null) =>{
             }
 
             await schema.validateAsync(data, {abortEarly:false})
+            // const response = await rule.validateAsync(payload, {abortEarly:false});
             next()
         }catch(exception){
             next(exception)

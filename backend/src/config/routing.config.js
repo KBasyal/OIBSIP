@@ -3,8 +3,9 @@ const mainRoute = require('express').Router()
 const authRouter = require("../modules/auth/auth.router")
 // mainRoute.use("/auth",)
 
+
 // Attaching these routes to mainRouter
-mainRoute.use(authRouter)
+mainRoute.use('/auth', authRouter)
 
 
 

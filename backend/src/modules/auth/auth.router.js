@@ -1,8 +1,12 @@
-const express = require("express");
-const authRoutes = express()
+const authRoutes= require('express').Router();
 
-authRoutes.use("/auth/register",(request, response)=>{
+const {bodyValidator}= require("../../middleware/validator.middleware")
+const authCtrl = require("./auth.controller")
+const {registerDTO}= require("./auth.dto")
 
-})
+const {setPath, uploader} = require("../../middleware/uploader.middleware");
+
+
+authRoutes.post('/register', setPath('users'),uploader.single('image'), bodyValidator(registerDTO), authCtrl.register)
 
 module.exports =authRoutes;

@@ -1,5 +1,5 @@
 
-const generateRandomString = (length=100) =>{
+const generateRandomString = (length = 100) =>{
     const chars = "0123456789abcdefghijklmanopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     len = chars.length;
     let random = "";
