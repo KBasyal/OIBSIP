@@ -22,8 +22,6 @@ class AuthService {
         } catch (exception) {
             throw exception
         }
-
-
     }
     createUser= async(data)=>{
         try{
@@ -34,6 +32,25 @@ class AuthService {
             throw exception
         }
 
+    }
+    findOneUser = async (filter)=>{
+        try{
+            const userObj = await UserModel.findOne(filter);
+            return userObj
+
+        }catch(exception){
+            throw exception
+        }
+    }
+
+    updateUser =async (data, userId) =>{
+        try{
+            const result = await UserModel.findByIdAndUpdate(userId, {$set:data});
+            return result
+
+        }catch(exception){
+            throw exception
+        }
     }
 }
 

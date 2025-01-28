@@ -53,7 +53,7 @@ app.use((error, req, res, next) => {
         }
     }
 
-    if (+statusCode === 11000) {
+    if (statusCode === 11000) {
         statusCode = 400;
         data = {};
         const fields = Object.keys(error.keyPattern);
