@@ -1,11 +1,13 @@
 const mainRoute = require('express').Router()
 // importing routes form different modules
-const authRouter = require("../modules/auth/auth.router")
-// mainRoute.use("/auth",)
+const authRoutes = require("../modules/auth/auth.router")
+const bannerRoutes = require("../modules/banner/banner.router")
 
 
 // Attaching these routes to mainRouter
-mainRoute.use('/auth', authRouter)
+mainRoute.use('/auth', authRoutes)
+mainRoute.use('/banner', bannerRoutes)
+
 
 
 
