@@ -1,25 +1,27 @@
-const allowRole =(allowRole)=>{
-    return(req, res, next)=>{
-        try{
-            const loggedInUser = req.body || null;
-            if(!loggedInUser){
-                throw({code:401, message:"Please Log In first"})
-            }else{
-                const role = loggedInUser.role;
-                if(typeof allowRole == 'string' && allowRole === role){
-                    next();
-                }else if(Array.isArray(allowedRole) && allowedRole.includes(role)){
-                    next();
-
-                }else{
-                    next({code:403, message:"You donot have previlage to access this API"})
-                }
+const allowRole = (allowedRole) => {
+    return async (req, res, next) => {
+        try {
+            const loggedInUser = req.authUser || null;
+            console.log("Logged in user:", loggedInUser);
+            if (!loggedInUser) {
+                return res.status(401).json({ message: "Please login first" });
             }
 
-        }catch(exception){
-            next(exception)
+            const role = loggedInUser.role;
+            console.log("User role:", role);
+            console.log("Allowed roles:", allowedRole);
+
+            if ((typeof allowedRole === 'string' && allowedRole === role) ||
+                (Array.isArray(allowedRole) && allowedRole.includes(role))) {
+                return next();
+            } else {
+                return res.status(403).json({ message: "You do not have privilege to access this API" });
+            }
+        } catch (exception) {
+            console.error('Error in allowRole middleware:', exception);
+            return next(exception);
         }
-    }
-}
+    };
+};
 
 module.exports = allowRole;
