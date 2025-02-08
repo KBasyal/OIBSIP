@@ -13,30 +13,42 @@ const PizzaSchema = new mongoose.Schema(
             enum: ["small", "medium", "large", "extra large"],
             default: "medium"
         },
-        crust: {
-            type: String,
-        },
-        price: {
-            type: String
-
+        base: {
+            type: mongoose.Types.ObjectId,
+            ref: "Base",
+            default: null,
         },
         topping: {
             type: String
         },
         cheese: {
-            type: String
+            type: mongoose.Types.ObjectId,
+            ref: "Cheese",
+            default: null,
+            
         },
-        sauce_type: {
-            type: String
-        },
-        availity: {
-            type: String,
-            enum: ["available", "out of stock"],
-            default: "available"
+        sauce: {
+            type: mongoose.Types.ObjectId,
+            ref: "Sauce",
+            default: null,
+            
         },
         image: {
             type: String,
             required: true,
+        },
+        price:{
+            type: String,
+            required: true,
+        },
+        description:{
+            type : String,
+            required:true,
+        },
+        availity:{
+            type: String,
+            enum: ["available", "out of stock"],
+            default: "available"
         },
         createdBy: {
             type: mongoose.Types.ObjectId,
